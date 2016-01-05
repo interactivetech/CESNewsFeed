@@ -26,11 +26,9 @@ Founder and Wizard - Andrew Mendez aka DRIZZY 1/4/16
 <div class="row">
     <!-- CNET Feed -->
     <div class="col s12 m3">
-<ul class="collection">
-    <li class="collection-item" ng-repeat="article in controller.cnetFeed">
 
 
-        <div class="card">
+        <div class="card" ng-repeat="article in controller.cnetFeed">
             <div class="card-image">
                 <img src="{{article.image.src}}">
                 <span class="card-title">{{article.headline.text}}</span>
@@ -45,17 +43,14 @@ Founder and Wizard - Andrew Mendez aka DRIZZY 1/4/16
 
 
 
-    </li>
-</ul>
+
     </div>
 
     <!-- TechCrunch Feed -->
     <div class="col s10 m4">
-        <ul class="collection">
-            <li class="collection-item" ng-repeat="tArticle in controller.techCrunchFeed">
 
 
-                <div class="card">
+                <div class="card" ng-repeat="tArticle in controller.techCrunchFeed">
                     <div class="card-image">
                         <img src="{{tArticle.images.src}}">
                         <span class="card-title" style="color:#eceff1">{{tArticle.headline.text}}</span>
@@ -70,19 +65,17 @@ Founder and Wizard - Andrew Mendez aka DRIZZY 1/4/16
 
 
 
-            </li>
-        </ul>
+
     </div>
 
 
     <!-- TechCrunch Feed -->
     <div class="col s10 m4">
-        <ul class="collection">
-            <li class="collection-item" ng-repeat="vArticle in controller.theVergeFeed">
 
 
-                <div class="card">
-                    <div class="card-image">
+
+                <div class="card"ng-repeat="vArticle in controller.theVergeFeed">
+                    <div class="card-image" >
 
                         <img src="{{vArticle.image2['data-original']}}">
                         <span class="card-title" style="color:#eceff1">{{vArticle.headline.text}}</span>
@@ -97,8 +90,7 @@ Founder and Wizard - Andrew Mendez aka DRIZZY 1/4/16
 
 
 
-            </li>
-        </ul>
+
     </div>
 
 </div>
