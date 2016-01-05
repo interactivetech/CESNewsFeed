@@ -1,0 +1,113 @@
+<!--
+Founder and Wizard - Andrew Mendez aka DRIZZY 1/4/16
+-->
+<!DOCTYPE html>
+<html lang="en" ng-app="CESNewsFeedApp">
+<head>
+    <meta charset="UTF-8">
+    <title>CES News Feed</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular.min.js"></script>
+    <script src="app.js"></script>
+
+
+</head>
+<body ng-controller="CESNewsFeedController as controller">
+<h1 class="center">CES News Feed</h1>
+
+
+<p>Number of CNET Articles:{{controller.cnetFeed.length}}</p>
+<p>Number of Tech Crunch Articles:{{controller.techCrunchFeed.length}}</p>
+<p>Number of Tech Crunch Articles: {{controller.theVergeFeed.length}}</p>
+<div class="row">
+    <!-- CNET Feed -->
+    <div class="col s12 m3">
+<ul class="collection">
+    <li class="collection-item" ng-repeat="article in controller.cnetFeed">
+
+
+        <div class="card">
+            <div class="card-image">
+                <img src="{{article.image.src}}">
+                <span class="card-title">{{article.headline.text}}</span>
+            </div>
+            <div class="card-content">
+                <p>{{article.time[0]+" "+article.time[1]}}</p>
+            </div>
+            <div class="card-action">
+                <a href="{{article.headline.href}}">Source</a>
+            </div>
+        </div>
+
+
+
+    </li>
+</ul>
+    </div>
+
+    <!-- TechCrunch Feed -->
+    <div class="col s10 m4">
+        <ul class="collection">
+            <li class="collection-item" ng-repeat="tArticle in controller.techCrunchFeed">
+
+
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{tArticle.images.src}}">
+                        <span class="card-title" style="color:#eceff1">{{tArticle.headline.text}}</span>
+                    </div>
+                    <div class="card-content">
+                        <p>{{tArticle.time}}</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="{{tArticle.headline.href}}">Source</a>
+                    </div>
+                </div>
+
+
+
+            </li>
+        </ul>
+    </div>
+
+
+    <!-- TechCrunch Feed -->
+    <div class="col s10 m4">
+        <ul class="collection">
+            <li class="collection-item" ng-repeat="vArticle in controller.theVergeFeed">
+
+
+                <div class="card">
+                    <div class="card-image">
+
+                        <img src="{{vArticle.image2['data-original']}}">
+                        <span class="card-title" style="color:#eceff1">{{vArticle.headline.text}}</span>
+                    </div>
+                    <div class="card-content">
+                        <p>{{vArticle.time}}</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="{{vArticle.headline.href}}">Source</a>
+                    </div>
+                </div>
+
+
+
+            </li>
+        </ul>
+    </div>
+
+</div>
+<!--<table>-->
+    <!--<tr><th>CNET Feed</th></tr>-->
+    <!--<tr ng-repeat="article in controller.cnetFeed"><td>{{article.headline.text}}</td><td><img src="{{article.image.src}}"></td><td>{{article.time[0]+" "+article.time[1]}}</td></tr>-->
+<!--</table>-->
+
+</body>
+</html>
