@@ -6,6 +6,10 @@ Founder and Wizard - Andrew Mendez aka DRIZZY 1/4/16
 <head>
     <meta charset="UTF-8">
     <title>CES News Feed</title>
+    
+    <link href='https://fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'>
+    <!--jquery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
@@ -16,91 +20,112 @@ Founder and Wizard - Andrew Mendez aka DRIZZY 1/4/16
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular.min.js"></script>
     <script src="app.js"></script>
 
+     <link rel="stylesheet" type="text/css" href="style.css">
+
 
 </head>
 <body ng-controller="CESNewsFeedController as controller">
-<h1 class="center">CES News Feed</h1>
 
 
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">CES News Feed</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
+    </div>
+  </nav>
+
+        
+<!--Search-->
+<div class="row">
+    <div class="col s12 m3">
+<label>Search: <input ng-model="searchText" placeholder="Samsung, Sony, Virtual Reality"></label>
+</div>
+</div>
+<br>
+<br>
 
 <div class="row">
     <!-- CNET Feed -->
-    <div class="col s12 m3">
-
-
-        <div class="card" ng-repeat="article in controller.cnetFeed">
+    <div class="col s12 m4">
+        <div class="card" ng-repeat="article in controller.cnetFeed|filter:searchText|limitTo:9">
             <div class="card-image">
                 <img src="{{article.image.src}}">
-                <span class="card-title">{{article.headline.text}}</span>
+                <a href="{{article.headline.href}}">
+                <span class="card-title">{{article.headline.text}}</span></a>
             </div>
             <div class="card-content">
                 <p>{{article.time[0]+" "+article.time[1]}}</p>
             </div>
-            <div class="card-action">
-                <a href="{{article.headline.href}}">Source</a>
-            </div>
         </div>
-
-
-
-
     </div>
 
     <!-- TechCrunch Feed -->
     <div class="col s10 m4">
-
-
-                <div class="card" ng-repeat="tArticle in controller.techCrunchFeed">
-                    <div class="card-image">
+                
+                <div class="card" ng-repeat="tArticle in controller.techCrunchFeed | filter:searchText|limitTo:6">
+                    
+                   <div class="card-image">
                         <img src="{{tArticle.images.src}}">
-                        <span class="card-title" style="color:#eceff1">{{tArticle.headline.text}}</span>
+                        
+                         <a href="{{tArticle.headline.href}}"><span class="card-title" style="color:#eceff1">{{tArticle.headline.text}}</span></a>
                     </div>
                     <div class="card-content">
                         <p>{{tArticle.time}}</p>
                     </div>
-                    <div class="card-action">
-                        <a href="{{tArticle.headline.href}}">Source</a>
-                    </div>
                 </div>
-
-
-
-
     </div>
 
 
-    <!-- TechCrunch Feed -->
+    <!-- The verge Feed -->
     <div class="col s10 m4">
-
-
-
-                <div class="card"ng-repeat="vArticle in controller.theVergeFeed">
+                <div class="card" id="card" ng-repeat="vArticle in controller.theVergeFeed | filter:searchText|limitTo:6" >
                     <div class="card-image" >
 
                         <img src="{{vArticle.image2['data-original']}}">
-                        <span class="card-title" style="color:#eceff1">{{vArticle.headline.text}}</span>
+                          <a href="{{vArticle.headline.href}}">
+                        <span class="card-title" style="color:#eceff1">{{vArticle.headline.text}}</span></a>
                     </div>
                     <div class="card-content">
                         <p>{{vArticle.time}}</p>
                     </div>
-                    <div class="card-action">
-                        <a href="{{vArticle.headline.href}}">Source</a>
-                    </div>
                 </div>
-
-
-
-
     </div>
 
 </div>
-<!--<table>-->
-    <!--<tr><th>CNET Feed</th></tr>-->
-    <!--<tr ng-repeat="article in controller.cnetFeed"><td>{{article.headline.text}}</td><td><img src="{{article.image.src}}"></td><td>{{article.time[0]+" "+article.time[1]}}</td></tr>-->
-<!--</table>-->
-
 </body>
+<script>
+$(document).ready(function() {
+    
 
+    
+    /* Every time the window is scrolled ... */
+    $(window).scroll( function(){
+    
+        /* Check the location of each desired element */
+        $(".card").each( function(i){
+            
+            var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+            
+            /* If the object is completely visible in the window, fade it it */
+            if( bottom_of_window > bottom_of_object ){
+                
+                $(this).animate({'opacity':'1'},500);
+                    
+            }
+            
+        }); 
+    
+    });
+    
+});
+</script>
+<!--
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -113,6 +138,6 @@ Founder and Wizard - Andrew Mendez aka DRIZZY 1/4/16
   
   
 </script>
-
+-->
 </html>
 

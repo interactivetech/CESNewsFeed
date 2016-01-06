@@ -13,6 +13,8 @@ app.controller('CESNewsFeedController',['$http',function($http){
      controller.theVergeFeed=[];
      controller.techCrunchFeed=[];
 
+
+  
     //function call to get cnet CES feed
 
     //members:
@@ -21,6 +23,7 @@ app.controller('CESNewsFeedController',['$http',function($http){
     //index: 4
     //time: ["32", "minutes ago"] }
 
+    
     $http.get("https://www.kimonolabs.com/api/2ca32rtk?apikey=VbyVUPWXKsBMlIZXCWoQFHfzEZ0vsTlx").then(function(data){
         //console.log(data.data);
         //console.log("success");
@@ -28,7 +31,7 @@ app.controller('CESNewsFeedController',['$http',function($http){
         controller.cnetFeed=data.data.results.collection1;
         //console.log(controller.cnetFeed)
 
-
+        console.log('XXXXXXXXXXXXXXXXXXXXXXXXXlength:'+controller.limit);
     },function(err){
 
         if(err){
@@ -40,7 +43,7 @@ app.controller('CESNewsFeedController',['$http',function($http){
     });
 
 
-    //function call to get  TechCrunch feed
+  //function call to get  TechCrunch feed
 
     //members:
     //content: "Intel has made yet another hardware...
@@ -49,7 +52,6 @@ app.controller('CESNewsFeedController',['$http',function($http){
     //index: 1
     //time: "3 hours ago"
     //url: "http://techcrunch.com/events/ces-2016/"
-
     $http.get("https://www.kimonolabs.com/api/78lz1csi?apikey=VbyVUPWXKsBMlIZXCWoQFHfzEZ0vsTlx").then(function(data){
         //console.log(data.data);
         //console.log("success");
@@ -69,6 +71,7 @@ app.controller('CESNewsFeedController',['$http',function($http){
     });
 
 
+
     //function call to get The Verge feed
 
     //members:
@@ -77,7 +80,6 @@ app.controller('CESNewsFeedController',['$http',function($http){
     //index: 1
     //time: "January 4, 2016 12:01 am"
     //url: "http://www.theverge.com/ces"
-
     $http.get("https://www.kimonolabs.com/api/65bsmh6u?apikey=VbyVUPWXKsBMlIZXCWoQFHfzEZ0vsTlx").then(function(data){
         //console.log(data.data);
         //console.log("success");
@@ -86,6 +88,8 @@ app.controller('CESNewsFeedController',['$http',function($http){
         //console.log(controller.theVergeFeed[0].image2['data-original']);
 
         console.log(controller.theVergeFeed);
+
+
 
 
     },function(err){
