@@ -13,7 +13,7 @@ Founder and Wizard - Andrew Mendez aka DRIZZY 1/4/16
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 
@@ -24,17 +24,16 @@ Founder and Wizard - Andrew Mendez aka DRIZZY 1/4/16
 
 
 </head>
-<body ng-controller="CESNewsFeedController as controller">
+<body ng-controller="CESNewsFeedController as controller" class="blue-grey lighten-5">
 
 
 
   <nav>
-    <div class="nav-wrapper">
+      <div class="nav-wrapper teal" style="padding-left:10px; padding-right:10px; margin-bottom:10px;">
       <a href="#" class="brand-logo center">CES News Feed</a>
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+          <li><a href="#"><i class="material-icons">refresh</i></a></li>
       </ul>
     </div>
   </nav>
@@ -42,17 +41,31 @@ Founder and Wizard - Andrew Mendez aka DRIZZY 1/4/16
         
 <!--Search-->
 <div class="row">
-    <div class="col s12 m3">
-<label>Search: <input ng-model="searchText" placeholder="Samsung, Sony, Virtual Reality"></label>
-</div>
-</div>
-<br>
-<br>
+    <div class="col s12 m3 ">
 
-<div class="row">
+<label><i class="material-icons">search</i>  <input ng-model="searchText" placeholder="Samsung, Sony, Virtual Reality"></label>
+</div>
+</div>
+
+  <!-- FIRST CARD TO FIX SCROLL ISSUE-->
+  <div class="row">
+      <!-- CNET Feed -->
+      <div class="col  s12 m10 offset-m1">
+          <div class="card" style="opacity:100" ng-repeat="app in [0]|filter:searchText|limitTo:1">
+              <div class="card-image">
+                  <img src="{{controller.cnetFeed[controller.cnetFeed.length/2].image.src}}">
+                  <a href="{{controller.cnetFeed[controller.cnetFeed.length/2].headline.href}}">
+                      <span class="card-title">{{controller.cnetFeed[0].headline.text}}</span></a>
+              </div>
+              <div class="card-content">
+                  <p>{{controller.cnetFeed[0].time[0]+" "+controller.cnetFeed[0].time[1]}}</p>
+              </div>
+          </div>
+      </div>
+
     <!-- CNET Feed -->
-    <div class="col s12 m4">
-        <div class="card" ng-repeat="article in controller.cnetFeed|filter:searchText|limitTo:9">
+      <div class="col s12 m6 l4">
+        <div class="card" id="filteredCard" ng-repeat="article in controller.cnetFeed|filter:searchText|limitTo:9">
             <div class="card-image">
                 <img src="{{article.image.src}}">
                 <a href="{{article.headline.href}}">
@@ -63,11 +76,10 @@ Founder and Wizard - Andrew Mendez aka DRIZZY 1/4/16
             </div>
         </div>
     </div>
-
     <!-- TechCrunch Feed -->
-    <div class="col s10 m4">
+    <div class="col s12 m6 l4">
                 
-                <div class="card" ng-repeat="tArticle in controller.techCrunchFeed | filter:searchText|limitTo:6">
+                <div class="card" id="filteredCard" ng-repeat="tArticle in controller.techCrunchFeed | filter:searchText|limitTo:6">
                     
                    <div class="card-image">
                         <img src="{{tArticle.images.src}}">
@@ -82,8 +94,8 @@ Founder and Wizard - Andrew Mendez aka DRIZZY 1/4/16
 
 
     <!-- The verge Feed -->
-    <div class="col s10 m4">
-                <div class="card" id="card" ng-repeat="vArticle in controller.theVergeFeed | filter:searchText|limitTo:6" >
+    <div class="col s12 m6 l4">
+                <div class="card" id="filteredCard" ng-repeat="vArticle in controller.theVergeFeed | filter:searchText|limitTo:6" >
                     <div class="card-image" >
 
                         <img src="{{vArticle.image2['data-original']}}">
@@ -98,6 +110,39 @@ Founder and Wizard - Andrew Mendez aka DRIZZY 1/4/16
 
 </div>
 </body>
+
+<footer class="page-footer brown lighten-4">
+    <div class="container">
+        <div class="row">
+            <div class="col l3 s12 m6">
+                <article id="text-6" class="panel widget widget_text"><h5 class="abrown-text">About CES News Feed</h5>
+                <div class="textwidget">  </div>
+                </article>
+
+            </div>
+
+            </div>
+            <div class="col l3 s12 m6">
+                <p>An aggregation of news for CES 2016</p>
+            </div>
+
+
+            <div class="col l3 s12 m6">
+                <p> <a target="_blank" href="http://twitter.com/cesnewsfeed">Twitter</a></p>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            Made by <a href="https://github.com/interactivetech/CESNewsFeed/">Andrew Mendez</a>, Eduardo Dennis, Christian Vazquez
+        </div>
+    </div>
+</footer>
+
+
 <script>
 $(document).ready(function() {
     
